@@ -1,0 +1,29 @@
+feature liga {
+    sub き ゃ by kya;
+    sub き ゅ by kyu;
+    sub き ょ by kyo;
+
+    sub し ゃ by sha;
+    sub し ゅ by shu;
+    sub し ょ by sho;
+
+    sub ち ゃ by cha;
+    sub ち ゅ by chu;
+    sub ち ょ by cho;
+
+    sub に ゃ by nya;
+    sub に ゅ by nyu;
+    sub に ょ by nyo;
+
+    sub ひ ゃ by hya;
+    sub ひ ゅ by hyu;
+    sub ひ ょ by hyo;
+
+    sub み ゃ by mya;
+    sub み ゅ by myu;
+    sub み ょ by myo;
+
+    sub り ゃ by rya;
+    sub り ゅ by ryu;
+    sub り ょ by ryo;
+} liga;
