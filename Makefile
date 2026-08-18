@@ -3,14 +3,18 @@ O ?= .
 MAPPING := mappings/japanese/japanese.json
 PYTHON := /usr/bin/python
 
-TARGETS := NotoSansCJK-JP-Regular-jpwithromaji.ttf NotoSansMonoCJK-JP-Regular-jpwithromaji.ttf
+FONT_DIR := fonts/noto-sans-cjk
+
+SOURCES := $(wildcard $(FONT_DIR)/*.ttf)
+TARGETS := $(patsubst \
+	$(FONT_DIR)/%.ttf, \
+	$(O)/%-jpwithromaji.ttf, \
+	$(SOURCES))
 
 .PHONY: all
 
-all: $(addprefix $(O)/,$(TARGETS))
+all: $(TARGETS)
 
-
-
-$(O)/%-jpwithromaji.ttf: %.ttf $(MAPPING)
-	mkdir -p $(O)
+$(O)/%-jpwithromaji.ttf: $(FONT_DIR)/%.ttf $(MAPPING)
+	mkdir -p $(dir $@)
 	$(PYTHON) build.py $< $@ $(MAPPING)
