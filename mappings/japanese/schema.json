@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "japanese": {
+        "type": "string",
+        "pattern": "^[\\u3040-\\u309F\\u30A0-\\u30FF]+$"
+      },
+      "romaji": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "japanese",
+      "romaji"
+    ],
+    "additionalProperties": false
+  }
+}

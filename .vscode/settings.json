@@ -1,0 +1,10 @@
+{
+    "json.schemas": [
+        {
+            "fileMatch": [
+                "mappings/japanese/japanese.json"
+            ],
+            "url": "./mappings/japanese/schema.json"
+        }
+    ]
+}
