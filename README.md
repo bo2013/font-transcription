@@ -4,6 +4,17 @@ Fonts with built-in transcription.
 
 > [!NOTE]
 > This is a small project, so AI was used to speed up development.
+<!-- # Using make
+## Requirement
+- **Linux / MacOS / WSL**
+- **GNU Make**
+- **Python 3**
+- **Source**: any child folder in fonts/
+- **Mapping file**: mappings/&lt;language&gt;/&lt;language&gt;.json
+## Build
+```sh
+make [target] -O=<font directory>
+``` -->
 
 # Fonts
 
