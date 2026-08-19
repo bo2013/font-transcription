@@ -2,80 +2,13 @@ import json
 import sys
 
 from fontTools.ttLib import TTFont
-from fontTools.pens.boundsPen import BoundsPen
-from fontTools.pens.transformPen import TransformPen
-from fontTools.pens.ttGlyphPen import TTGlyphPen
-from fontTools.pens.t2CharStringPen import T2CharStringPen
 
-
-ROMAJI_FONT_SIZE = 0.35
-ROMAJI_GAP = 0.08
-
-
-def get_bounds(glyph, glyph_set):
-    pen = BoundsPen(glyph_set)
-    glyph.draw(pen)
-
-    if pen.bounds is None:
-        return None
-
-    return pen.bounds
-
-
-def get_advance(font, glyph_name):
-    return font["hmtx"][glyph_name][0]
-
-
-def draw_romaji(
-    font,
-    glyph_set,
-    target_pen,
-    romaji,
-    target_width,
-    target_top,
-):
-    scale = ROMAJI_FONT_SIZE
-
-    # Tính tổng width của romaji
-    widths = []
-
-    for char in romaji:
-        glyph_name = font.getBestCmap().get(ord(char))
-
-        if glyph_name is None:
-            raise ValueError(
-                f"Không tìm thấy glyph Latin: {char!r}"
-            )
-
-        widths.append(get_advance(font, glyph_name))
-
-    romaji_width = sum(widths) * scale
-
-    # Căn giữa romaji theo advance width của glyph Nhật
-    x = (target_width - romaji_width) / 2
-
-    # Đặt baseline của romaji phía trên glyph Nhật
-    y = target_top + font["head"].unitsPerEm * ROMAJI_GAP
-
-    for char, width in zip(romaji, widths):
-        glyph_name = font.getBestCmap()[ord(char)]
-        glyph = glyph_set[glyph_name]
-
-        transform = TransformPen(
-            target_pen,
-            (
-                scale,
-                0,
-                0,
-                scale,
-                x,
-                y,
-            ),
-        )
-
-        glyph.draw(transform)
-
-        x += width * scale
+from .glyph import create_pen, store_glyph
+from .romaji import (
+    draw_romaji,
+    get_advance,
+    get_bounds,
+)
 
 
 def process(font, mapping):
@@ -130,21 +63,11 @@ def process(font, mapping):
             target_name,
         )
 
-        if is_glyf:
-            pen = TTGlyphPen(glyph_set)
-
-        elif "CFF " in font:
-            pen = T2CharStringPen(
-                target_width,
-                glyph_set,
-            )
-
-        else:
-            pen = T2CharStringPen(
-                target_width,
-                glyph_set,
-                CFF2=True,
-            )
+        pen = create_pen(
+            font,
+            glyph_set,
+            target_width,
+        )
 
         # Giữ glyph Nhật gốc
         target_glyph.draw(pen)
@@ -159,45 +82,23 @@ def process(font, mapping):
             target_top,
         )
 
-        if is_glyf:
-            font["glyf"][target_name] = pen.glyph()
+        store_glyph(
+            font,
+            target_name,
+            pen,
+            target_width,
+        )
 
-        elif "CFF " in font:
-            cff = font["CFF "].cff
-            top_dict = cff.topDictIndex[0]
-            char_strings = top_dict.CharStrings
-
-            old_char_string = char_strings[target_name]
-
-            char_string = pen.getCharString(
-                private=old_char_string.private,
-                globalSubrs=cff.GlobalSubrs,
-            )
-
-            char_strings[target_name] = char_string
-
-        else:
-            cff = font["CFF2"].cff
-            top_dict = cff.topDictIndex[0]
-            char_strings = top_dict.CharStrings
-
-            old_char_string = char_strings[target_name]
-
-            char_string = pen.getCharString(
-                private=old_char_string.private,
-                globalSubrs=cff.GlobalSubrs,
-            )
-
-            char_strings[target_name] = char_string
-
-        print(f"{japanese} -> {romaji} ({target_name})")
+        print(
+            f"{japanese} -> {romaji} ({target_name})"
+        )
 
 
 def main():
     if len(sys.argv) != 4:
         print(
             "Usage:\n"
-            "  python main.py input.ttf output.ttf mapping.json"
+            "  python -m builder input.ttf output.ttf mapping.json"
         )
         sys.exit(1)
 
