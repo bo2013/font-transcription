@@ -11,8 +11,8 @@ Fonts with built-in transcription.
 
 | Font | Japanese | Korean | Simplified Chinese | Traditional Chinese | Hong Kong Chinese |
 |---|:---:|:---:|:---:|:---:|:---:|
-| Noto Sans CJK | ✅ | ❌ | ❌ | ❌ | ❓ |
-| Noto Sans Mono CJK | ✅ | ❌ | ❌ | ❌ | ❓ |
+| [Noto Sans CJK](fonts/noto-sans-cjk/) | ✅ | ❌ | ❌ | ❌ | ❓ |
+| [Noto Sans Mono CJK](fonts/noto-sans-mono-cjk/) | ✅ | ❌ | ❌ | ❌ | ❓ |
 
 <!-- Emoji source: ✅ ❌ ⚠️ ❓ -->
 
