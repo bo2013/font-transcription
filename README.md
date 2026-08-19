@@ -16,6 +16,23 @@ Fonts with built-in transcription.
 make [target] -O=<font directory>
 ``` -->
 
+# Installation
+## Linux / MacOS 
+```sh
+mkdir -p "$HOME/.local/share/fonts/font-transcription"
+cp "fonts/<font>/dist/"*.ttf "$HOME/.local/share/fonts/font-transcription/"
+fc-cache -f
+```
+# Windows
+```cmd
+mkdir "%LOCALAPPDATA%\Microsoft\Windows\Fonts"
+copy "fonts\<font>\dist\*.ttf" "%LOCALAPPDATA%\Microsoft\Windows\Fonts\"
+```
+# Using make (experimental)
+```sh
+make install FONT_DIR=fonts/<font>
+```
+
 # Fonts
 
 > [!WARNING]
