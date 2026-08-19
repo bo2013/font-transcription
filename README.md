@@ -17,6 +17,8 @@ make [target] -O=<font directory>
 ``` -->
 
 # Installation
+> [!WARNING]
+> These fonts use the same font family names as the original fonts. Installing them may cause applications to use these fonts instead of the original system fonts.
 ## Linux / MacOS 
 ```sh
 mkdir -p "$HOME/.local/share/fonts/font-transcription"
