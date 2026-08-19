@@ -6,6 +6,7 @@ Fonts with built-in transcription.
 
 > [!WARNING]
 > Japanese Kanji and character sequences are currently not supported.
+> 
 > Korean, Simplified Chinese, Traditional Chinese, and Hong Kong Chinese are currently not supported.
 
 | Font | Japanese | Korean | Simplified Chinese | Traditional Chinese | Hong Kong Chinese |
