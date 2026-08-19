@@ -17,7 +17,7 @@ all: $(TARGETS)
 
 $(FONT_DIR)/dist/%.ttf: $(FONT_DIR)/%.ttf $(MAPPING)
 	mkdir -p $(dir $@)
-	$(PYTHON) build.py $< $@ $(MAPPING)
+	$(PYTHON) -m builder $< $@ $(MAPPING)
 
 install:
 	mkdir -p $(HOME)/.local/share/fonts/jpwithromaji/
