@@ -20,8 +20,8 @@ $(FONT_DIR)/dist/%.ttf: $(FONT_DIR)/%.ttf $(MAPPING)
 	$(PYTHON) -m builder $< $@ $(MAPPING)
 
 install:
-	mkdir -p $(HOME)/.local/share/fonts/jpwithromaji/
-	cp $(FONT_DIR)/dist/*.ttf $(HOME)/.local/share/fonts/jpwithromaji/
+	mkdir -p $(HOME)/.local/share/fonts/font-transcription/
+	cp $(FONT_DIR)/dist/*.ttf $(HOME)/.local/share/fonts/font-transcription/
 	fc-cache -f
 	@echo
 	@echo "Added $(words $(wildcard $(FONT_DIR)/dist/*.ttf)) font(s)"
