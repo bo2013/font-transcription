@@ -1,7 +1,7 @@
 O ?= .
 
 MAPPING := mappings/japanese/japanese.json
-PYTHON := /usr/bin/python
+PYTHON ?= python
 
 FONT_DIR := fonts/noto-sans-cjk
 
