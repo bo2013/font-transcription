@@ -10,7 +10,7 @@ Fonts with built-in transcription.
 > Korean, Simplified Chinese, Traditional Chinese, and Hong Kong Chinese are currently not supported.
 
 | Font | Japanese | Korean | Simplified Chinese | Traditional Chinese | Hong Kong Chinese |
-|---|---|---|---|---|---|
+|---|:---:|:---:|:---:|:---:|:---:|
 | Noto Sans CJK | ✅ | ❌ | ❌ | ❌ | ❓ |
 | Noto Sans Mono CJK | ✅ | ❌ | ❌ | ❌ | ❓ |
 
