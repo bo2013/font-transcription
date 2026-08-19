@@ -2,6 +2,9 @@
 
 Fonts with built-in transcription.
 
+> [!NOTE]
+> This is a small project, so AI was used to speed up development.
+
 # Fonts
 
 > [!WARNING]
